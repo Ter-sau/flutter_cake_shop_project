@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cake_shop_project/views/cake_shop_detail_ui.dart';
 import 'package:flutter_cake_shop_project/views/cake_shop_list_ui.dart';
 
 class SplashScreenUi extends StatefulWidget {
