@@ -23,7 +23,7 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
     'assets/images/ck07.png',
   ];
 
-  List cakeShopData = [
+  List<CakeShop> cakeShopData = [
    CakeShop(
      name: 'Yellow Spoon Pastry',
      address: 'โครงการเอกมัย คอมเพล็กซ์ (ระหว่างเอกมัย 19 และ 21)',
@@ -186,7 +186,7 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
                     leading: ClipRRect( 
                       borderRadius: BorderRadius.circular( 8.0 ),
                       child: Image.asset( 
-                        shop.image1,
+                        shop.image1 ?? '',
                         width: 70,
                         height: 70,
                         fit: BoxFit.cover,
@@ -199,7 +199,7 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
                       ),
                     ),
                     title: Text( 
-                      shop.name,
+                      shop.name ?? '',
                       style: TextStyle( 
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -215,7 +215,14 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
                             children: [
                              Icon( Icons.phone, size: 14, color: Colors.green ),
                               SizedBox( width: 4 ),
-                              Text( shop.phone, style: TextStyle( fontSize: 13 ) ),
+                              Expanded(
+                                child: Text(
+                                  shop.phone ?? '',
+                                  style: TextStyle( fontSize: 13 ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ],
                           ),
                           SizedBox( height: 2 ),
@@ -225,7 +232,7 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
                               SizedBox( width: 4 ),
                               Expanded( 
                                 child: Text( 
-                                  shop.openCloseTime.replaceAll( '\n', ' ' ),
+                                  (shop.openCloseTime ?? '').replaceAll( '\n', ' ' ),
                                   style: TextStyle( fontSize: 12, color: Colors.black54 ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -241,7 +248,7 @@ class _CakeShopListUiState extends State< CakeShopListUi > {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CakeShopDetailUi(),
+                          builder: (context) => CakeShopDetailUi(shop: shop),
                         ),
                       );
                     },
